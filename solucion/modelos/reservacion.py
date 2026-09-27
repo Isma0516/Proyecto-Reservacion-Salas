@@ -18,3 +18,4 @@ class Reservacion:
     estado: str = ESTADO_ACTIVA
     serie_id: Optional[str] = None            # RF-14: agrupa las ocurrencias de una misma serie
     numero_ocurrencia: Optional[int] = None   # RF-14: posición dentro de la serie (1..N)
+
