@@ -156,3 +156,4 @@ def inicializar_bd() -> None:
             )
     finally:
         conexion.close()
+        
