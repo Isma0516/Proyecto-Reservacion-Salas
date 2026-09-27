@@ -48,3 +48,4 @@ def consultar_estudiantes() -> Resultado:
         return Resultado(False, "No fue posible consultar los estudiantes en este momento.")
 
     return Resultado(True, f"Se encontraron {len(estudiantes)} estudiante(s).", estudiantes)
+
