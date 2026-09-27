@@ -43,3 +43,4 @@ def sembrar_datos_iniciales() -> None:
     for estudiante in ESTUDIANTES_INICIALES:
         if not estudiante_repo.existe_carne(estudiante.carne):
             estudiante_repo.insertar_estudiante(estudiante)
+            
