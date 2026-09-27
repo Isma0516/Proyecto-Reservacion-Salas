@@ -12,3 +12,4 @@ def consultar_salas() -> Resultado:
         return Resultado(False, "No fue posible consultar las salas en este momento.")
 
     return Resultado(True, f"Se encontraron {len(salas)} sala(s).", salas)
+
