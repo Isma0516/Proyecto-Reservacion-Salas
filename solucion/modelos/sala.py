@@ -11,3 +11,4 @@ class Sala:
     nombre: str
     capacidad: int
     estado: str = ESTADO_DISPONIBLE
+
