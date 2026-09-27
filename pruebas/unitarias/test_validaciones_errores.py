@@ -27,6 +27,16 @@ class PruebasValidacionesYManejoErrores(unittest.TestCase):
     def tearDown(self):
         os.unlink(self.archivo_temporal.name)
 
+    def test_rechaza_carne_duplicado_sin_distinguir_mayusculas(self):
+        resultado = estudiantes.registrar_estudiante(
+            "est0000001", "Otra Persona", "otra@correo.com"
+        )
+        self.assertFalse(resultado.exito)
+        todos = estudiantes.consultar_estudiantes()
+        self.assertTrue(todos.exito)
+        self.assertEqual(len(todos.datos), 1)
+        self.assertEqual(todos.datos[0].carne, "EST0000001")
+
     def test_carne_no_texto_no_cierra_aplicacion(self):
         resultado = estudiantes.registrar_estudiante(1234567890, "Nombre", "correo@ejemplo.com")
         self.assertFalse(resultado.exito)

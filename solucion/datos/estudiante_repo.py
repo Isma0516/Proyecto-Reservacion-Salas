@@ -6,9 +6,10 @@ from solucion.modelos.estudiante import Estudiante
 
 
 def existe_carne(carne: str) -> bool:
+    """RF-02: el carné es único sin distinguir mayúsculas de minúsculas."""
     with abrir_conexion() as conexion:
         fila = conexion.execute(
-            "SELECT 1 FROM estudiantes WHERE carne = ?", (carne,)
+            "SELECT 1 FROM estudiantes WHERE carne = ? COLLATE NOCASE", (carne,)
         ).fetchone()
         return fila is not None
 
