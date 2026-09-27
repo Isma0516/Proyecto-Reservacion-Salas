@@ -14,3 +14,4 @@ class Resultado:
     exito: bool
     mensaje: str
     datos: Optional[Any] = None
+    
