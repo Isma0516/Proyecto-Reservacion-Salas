@@ -30,6 +30,9 @@ def _validar_datos_basicos(fecha_str: str, hora_inicio_str: str, duracion: int, 
     if not validaciones.cantidad_personas_valida(cantidad_personas):
         return None, Resultado(False, "La cantidad de personas debe ser un número entero mayor que cero.")
 
+    if not validaciones.inicia_dentro_del_horario(hora_inicio_str):
+        return None, Resultado(False, "La reservación debe iniciar a las 08:00 o después.")
+
     if not validaciones.finaliza_dentro_del_horario(hora_inicio_str, duracion):
         return None, Resultado(False, "La reservación debe finalizar como máximo a las 20:00.")
 

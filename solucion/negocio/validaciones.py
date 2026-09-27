@@ -7,6 +7,7 @@ PATRON_CARNE = re.compile(r"^[A-Za-z0-9]{10}$")
 PATRON_CORREO = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 PATRON_ID_RESERVACION = re.compile(r"^R\d{4,}$")
 
+HORA_APERTURA = time(8, 0)  # RN-05
 HORA_LIMITE_FIN = time(20, 0)  # RN-05
 
 
@@ -79,6 +80,12 @@ def calcular_hora_fin(hora_inicio_str: str, duracion: int) -> Optional[time]:
         return None
     inicio = datetime.combine(date.today(), hora_inicio)
     return (inicio + timedelta(hours=duracion)).time()
+
+
+def inicia_dentro_del_horario(hora_inicio_str: str) -> bool:
+    """RN-05: la reservación debe iniciar a las 08:00 o después."""
+    hora_inicio = convertir_hora(hora_inicio_str)
+    return hora_inicio is not None and hora_inicio >= HORA_APERTURA
 
 
 def finaliza_dentro_del_horario(hora_inicio_str: str, duracion: int) -> bool:

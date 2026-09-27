@@ -51,6 +51,32 @@ class PruebasValidacionesYManejoErrores(unittest.TestCase):
         )
         self.assertFalse(resultado.exito)
 
+    def test_rechaza_inicio_antes_de_las_08(self):
+        resultado = reservaciones.crear_reservacion(
+            "EST0000001", "S01", self.manana, "07:00", 1, 1
+        )
+        self.assertFalse(resultado.exito)
+        self.assertIn("08:00", resultado.mensaje)
+
+    def test_permite_inicio_a_las_08(self):
+        resultado = reservaciones.crear_reservacion(
+            "EST0000001", "S01", self.manana, "08:00", 1, 1
+        )
+        self.assertTrue(resultado.exito)
+
+    def test_permite_inicio_a_las_19_con_duracion_1(self):
+        resultado = reservaciones.crear_reservacion(
+            "EST0000001", "S01", self.manana, "19:00", 1, 1
+        )
+        self.assertTrue(resultado.exito)
+
+    def test_rechaza_inicio_a_las_19_con_duracion_2(self):
+        resultado = reservaciones.crear_reservacion(
+            "EST0000001", "S01", self.manana, "19:00", 2, 1
+        )
+        self.assertFalse(resultado.exito)
+        self.assertIn("20:00", resultado.mensaje)
+
     def test_hora_fuera_de_rango_no_lanza_excepcion(self):
         resultado = reservaciones.crear_reservacion(
             "EST0000001", "S01", self.manana, "23:00", 2, 2
