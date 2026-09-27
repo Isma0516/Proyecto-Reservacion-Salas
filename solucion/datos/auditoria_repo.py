@@ -51,3 +51,4 @@ def listar(entidad: str = None, identificador: str = None) -> List[RegistroAudit
             )
             for fila in filas
         ]
+        
