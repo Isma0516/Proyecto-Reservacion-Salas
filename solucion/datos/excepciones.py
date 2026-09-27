@@ -1,15 +1,15 @@
-"""Exceptions exposed by the persistence layer.
+"""Excepciones expuestas por la capa de persistencia.
+La capa de negocio utiliza estas excepciones en lugar de depender directamente de
+clases de excepción específicas de SQLite. Esto mantiene los detalles de persistencia dentro de
+solucion.datos y conserva la separación de responsabilidades.
 
-The business layer uses these exceptions instead of depending directly on
-SQLite-specific exception classes. This keeps persistence details inside
-``solucion.datos`` and preserves separation of responsibilities.
 """
 
 
 class ErrorPersistencia(Exception):
-    """Base error for failures while reading or writing persistent data."""
+    """Error base para fallos al leer o escribir datos persistentes."""
 
 
 class ErrorIntegridadDatos(ErrorPersistencia):
-    """Raised when a persistence operation violates a data integrity rule."""
+    """Se genera cuando una operación de persistencia viola una regla de integridad de los datos."""
 
