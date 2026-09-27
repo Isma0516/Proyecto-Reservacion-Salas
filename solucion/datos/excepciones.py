@@ -12,3 +12,4 @@ class ErrorPersistencia(Exception):
 
 class ErrorIntegridadDatos(ErrorPersistencia):
     """Raised when a persistence operation violates a data integrity rule."""
+
