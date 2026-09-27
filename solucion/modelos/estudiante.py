@@ -8,3 +8,4 @@ class Estudiante:
     nombre: str
     correo: str
     activo: bool = True
+
