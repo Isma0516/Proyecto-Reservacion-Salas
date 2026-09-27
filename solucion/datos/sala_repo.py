@@ -50,3 +50,4 @@ def _fila_a_sala(fila) -> Sala:
         capacidad=fila["capacidad"],
         estado=fila["estado"],
     )
+
