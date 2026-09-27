@@ -186,3 +186,5 @@ def _fila_a_reservacion(fila) -> Reservacion:
         serie_id=fila["serie_id"] if "serie_id" in columnas else None,
         numero_ocurrencia=fila["numero_ocurrencia"] if "numero_ocurrencia" in columnas else None,
     )
+
+
