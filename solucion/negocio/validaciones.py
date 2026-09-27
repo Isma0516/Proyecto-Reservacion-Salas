@@ -91,3 +91,4 @@ def finaliza_dentro_del_horario(hora_inicio_str: str, duracion: int) -> bool:
     fin = inicio + timedelta(hours=duracion)
     limite = datetime.combine(date.today(), HORA_LIMITE_FIN)
     return fin <= limite
+    
