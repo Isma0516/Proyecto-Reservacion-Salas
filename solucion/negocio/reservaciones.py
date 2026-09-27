@@ -179,3 +179,4 @@ def cancelar_reservacion(id_reservacion: str) -> Resultado:
         return Resultado(False, "Ocurrió un error al cancelar la reservación. No se realizaron cambios.")
 
     return Resultado(True, f"Reservación {id_reservacion} cancelada. El horario queda disponible.")
+    
