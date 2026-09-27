@@ -58,3 +58,5 @@ def _fila_a_estudiante(fila) -> Estudiante:
         correo=fila["correo"],
         activo=bool(fila["activo"]),
     )
+
+
