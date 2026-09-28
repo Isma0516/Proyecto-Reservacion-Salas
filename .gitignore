@@ -1,19 +1,22 @@
 __pycache__/
- *.py[cod]
+*.py[cod]
 
- .venv/
- venv/
+.venv/
+venv/
 
- .env
+.env
 
- .pytest_cache/
- .coverage
- htmlcov/
+.pytest_cache/
+.coverage
+htmlcov/
 
- *.log
+*.log
+*.db
 
- .idea/
- .vscode/
+.idea/
+.vscode/
 
- .DS_Store
- Thumbs.db
+.DS_Store
+Thumbs.db
+
+.codex-docx-review/
