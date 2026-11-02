@@ -1,0 +1,14 @@
+Curso: TI-3603 Calidad en Sistemas de Información
+Semestre: II, 2026
+Grupo: 02
+Proyecto: Sistema de reservación de salas de estudio
+Versión local del paquete: F6-reconstruccion-v1.0
+Fecha de preparación: 2026-10-31
+Estatus declarado: Buena (provisional; aceptación académica y pruebas cruzadas externas pendientes)
+Integrantes según documento de Fase 1:
+- Esteban Brenes Montoya — 2023346432
+- Eduardo Fernández Cerdas — 2024080587
+- Ismael Soto Valdivia — 2019043735
+- Randall Sánchez Ortiz — 2023177127
+- Juan Diego Quirós Gómez — 2024165546
+Advertencia: reconstrucción ejecutable basada en el esquema y API pública de develop, no sustitución comprobada contra el commit remoto original. No hay commits ni pushes hechos por esta entrega.
