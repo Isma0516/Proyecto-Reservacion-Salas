@@ -9,6 +9,34 @@ def registrar(tipo_accion, entidad, identificador, detalle=None):
                     (tipo_accion,entidad,identificador,detalle))
 
 
-def listar():
+
+class RegistroAuditoria(dict):
+    """Registro accesible mediante claves o atributos."""
+
+    def __getattr__(self, nombre):
+        try:
+            return self[nombre]
+        except KeyError as error:
+            raise AttributeError(nombre) from error
+
+
+def listar(entidad=None, identificador=None):
+    """Consulta la auditoría y permite filtrar sus registros."""
+    consulta = "SELECT * FROM auditoria WHERE 1 = 1"
+    parametros = []
+    if entidad is not None:
+        consulta += " AND entidad = ?"
+        parametros.append(entidad)
+    if identificador is not None:
+        consulta += " AND identificador = ?"
+        parametros.append(identificador)
+    if entidad is not None or identificador is not None:
+        consulta += " ORDER BY id ASC"
+    else:
+        consulta += " ORDER BY id DESC"
     with abrir_conexion() as con:
-        return [dict(r) for r in con.execute("SELECT * FROM auditoria ORDER BY id DESC")]
+        return [
+            RegistroAuditoria(dict(fila))
+            for fila in con.execute(consulta, parametros)
+        ]
+
