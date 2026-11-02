@@ -25,3 +25,22 @@ def insertar_estudiante(estudiante):
 def actualizar_estudiante(carne, nombre, correo, activo):
     with abrir_conexion() as con:
         con.execute("UPDATE estudiantes SET nombre=?,correo=?,activo=? WHERE carne=? COLLATE NOCASE", (nombre,correo,int(activo),carne))
+        
+def existe_carne(carne):
+    """Comprueba si existe un carné, sin distinguir mayúsculas."""
+    if not isinstance(carne, str):
+        return False
+
+    with abrir_conexion() as con:
+        fila = con.execute(
+            """
+            SELECT 1
+            FROM estudiantes
+            WHERE carne = ? COLLATE NOCASE
+            LIMIT 1
+            """,
+            (carne.strip(),),
+        ).fetchone()
+
+    return fila is not None
+
