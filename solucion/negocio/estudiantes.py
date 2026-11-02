@@ -17,7 +17,7 @@ def registrar_estudiante(carne,nombre,correo):
         return Resultado(False,"El correo electrónico tiene un formato inválido.")
     carne,nombre,correo=carne.strip(),nombre.strip(),correo.strip()
     try:
-        if estudiante_repo.obtener_estudiante(carne):
+        if estudiante_repo.existe_carne(carne):
             return Resultado(False,"Ya existe un estudiante registrado con ese carné.")
         nuevo=Estudiante(carne,nombre,correo)
         estudiante_repo.insertar_estudiante(nuevo)
