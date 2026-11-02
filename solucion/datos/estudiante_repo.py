@@ -22,10 +22,27 @@ def insertar_estudiante(estudiante):
         con.execute("INSERT INTO estudiantes(carne,nombre,correo,activo) VALUES(?,?,?,?)", (estudiante.carne, estudiante.nombre, estudiante.correo, int(estudiante.activo)))
 
 
-def actualizar_estudiante(carne, nombre, correo, activo):
+
+def actualizar_estudiante(carne, nombre=None, correo=None, activo=None):
+    """Actualiza un estudiante conservando su carné.
+    Admite un objeto Estudiante o los cuatro parámetros separados.
+    """
+    if isinstance(carne, Estudiante):
+        estudiante = carne
+        carne = estudiante.carne
+        nombre = estudiante.nombre
+        correo = estudiante.correo
+        activo = estudiante.activo
     with abrir_conexion() as con:
-        con.execute("UPDATE estudiantes SET nombre=?,correo=?,activo=? WHERE carne=? COLLATE NOCASE", (nombre,correo,int(activo),carne))
-        
+        con.execute(
+            """
+            UPDATE estudiantes
+            SET nombre = ?, correo = ?, activo = ?
+            WHERE carne = ? COLLATE NOCASE
+            """,
+            (nombre, correo, int(activo), carne),
+        )
+  
 def existe_carne(carne):
     """Comprueba si existe un carné, sin distinguir mayúsculas."""
     if not isinstance(carne, str):
