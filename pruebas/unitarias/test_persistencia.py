@@ -32,7 +32,7 @@ class PruebasPersistencia(unittest.TestCase):
         self.assertEqual(len(salas), 5)
         self.assertEqual(len(estudiantes), 3)
         sala_s04 = sala_repo.obtener_sala("S04")
-        self.assertEqual(sala_s04.estado, "fuera_servicio")
+        self.assertEqual(sala_s04.estado, "fuera_de_servicio")
         estudiante_inactivo = estudiante_repo.obtener_estudiante("C004567890")
         self.assertFalse(estudiante_inactivo.activo)
 
@@ -63,7 +63,7 @@ class PruebasPersistencia(unittest.TestCase):
         sala_repo.actualizar_sala(sala)
         actualizada = sala_repo.obtener_sala("S01")
         self.assertEqual(actualizada.capacidad, 5)
-        self.assertEqual(actualizada.estado, "fuera_servicio")
+        self.assertEqual(actualizada.estado, "fuera_de_servicio")
 
     # --- RF-06 / RF-07: historial y búsqueda ---
 
