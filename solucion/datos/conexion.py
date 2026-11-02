@@ -27,11 +27,13 @@ def obtener_conexion():
     return con
 
 
+
 @contextmanager
 def abrir_conexion():
-    """Transacción segura que cierra y traduce las excepciones de SQLite."""
-    con = obtener_conexion()
+    """Gestiona conexiones y traduce errores de SQLite."""
+    con = None
     try:
+        con = obtener_conexion()
         with con:
             yield con
     except sqlite3.IntegrityError as error:
@@ -39,7 +41,9 @@ def abrir_conexion():
     except sqlite3.Error as error:
         raise ErrorPersistencia(str(error)) from error
     finally:
-        con.close()
+        if con is not None:
+            con.close()
+
 
 
 def _columnas(con, nombre):
@@ -48,7 +52,6 @@ def _columnas(con, nombre):
 
 def _migrar_estados_salas(con):
     """Convierte esquema F2 con CHECK fuera_servicio a la denominación oficial.
-
     Se deshabilitan FK solo durante la migración y se valida la integridad
     referencial antes de confirmar. No se eliminan reservaciones relacionadas.
     """
