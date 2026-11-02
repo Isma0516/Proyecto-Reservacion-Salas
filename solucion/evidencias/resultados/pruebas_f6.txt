@@ -1,0 +1,32 @@
+test_busqueda_estudiante_inexistente_y_sin_reservas (integracion.test_flujos_completos.TestFlujosIntegracion.test_busqueda_estudiante_inexistente_y_sin_reservas) ... ok
+test_colision_parcial_consecutiva_y_cancelacion (integracion.test_flujos_completos.TestFlujosIntegracion.test_colision_parcial_consecutiva_y_cancelacion) ... ok
+test_disponibilidad_no_crea_archivos_ni_reservas (integracion.test_flujos_completos.TestFlujosIntegracion.test_disponibilidad_no_crea_archivos_ni_reservas) ... ok
+test_export_csv_utf8_y_cancela_sin_archivos (integracion.test_flujos_completos.TestFlujosIntegracion.test_export_csv_utf8_y_cancela_sin_archivos) ... ok
+test_export_rango_erroneo (integracion.test_flujos_completos.TestFlujosIntegracion.test_export_rango_erroneo) ... ok
+test_inicializacion_idempotente_sin_duplicados (integracion.test_flujos_completos.TestFlujosIntegracion.test_inicializacion_idempotente_sin_duplicados) ... ok
+test_limite_reservas_y_no_reutilizar_id (integracion.test_flujos_completos.TestFlujosIntegracion.test_limite_reservas_y_no_reutilizar_id) ... ok
+test_modificar_conserva_id_y_previene_conflictos (integracion.test_flujos_completos.TestFlujosIntegracion.test_modificar_conserva_id_y_previene_conflictos) ... ok
+test_panel_filtros (integracion.test_flujos_completos.TestFlujosIntegracion.test_panel_filtros) ... ok
+test_reabrir_bd_y_continuidad_id (integracion.test_flujos_completos.TestFlujosIntegracion.test_reabrir_bd_y_continuidad_id) ... ok
+test_rechazar_nombre_blanco_y_correo (integracion.test_flujos_completos.TestFlujosIntegracion.test_rechazar_nombre_blanco_y_correo) ... ok
+test_recorrencia_dos_ocurrencias_y_cancelacion_futuras (integracion.test_flujos_completos.TestFlujosIntegracion.test_recorrencia_dos_ocurrencias_y_cancelacion_futuras) ... ok
+test_recurrencia_rechaza_conflicto_sin_escritura_parcial (integracion.test_flujos_completos.TestFlujosIntegracion.test_recurrencia_rechaza_conflicto_sin_escritura_parcial) ... ok
+test_recurrencia_serie_8_conflicto_regla_11 (integracion.test_flujos_completos.TestFlujosIntegracion.test_recurrencia_serie_8_conflicto_regla_11) ... ok
+test_registro_estudiante_y_estados (integracion.test_flujos_completos.TestFlujosIntegracion.test_registro_estudiante_y_estados) ... ok
+test_rollback_serie_id_duplicado (integracion.test_flujos_completos.TestFlujosIntegracion.test_rollback_serie_id_duplicado) ... ok
+test_sala_capacidad_invalida (integracion.test_flujos_completos.TestFlujosIntegracion.test_sala_capacidad_invalida) ... ok
+test_sala_codigo_protegido_capacidad_futura (integracion.test_flujos_completos.TestFlujosIntegracion.test_sala_codigo_protegido_capacidad_futura) ... ok
+test_CP_RF02_06_nombre_menor_tres_caracteres (regresion.test_f6_defectos.TestDefectosFase6.test_CP_RF02_06_nombre_menor_tres_caracteres) ... ok
+test_CP_RF17_01_auditoria_creacion (regresion.test_f6_defectos.TestDefectosFase6.test_CP_RF17_01_auditoria_creacion) ... ok
+test_CP_RF17_03_auditoria_cancelacion (regresion.test_f6_defectos.TestDefectosFase6.test_CP_RF17_03_auditoria_cancelacion) ... ok
+test_CP_RN01_04_carne_minusc (regresion.test_f6_defectos.TestDefectosFase6.test_CP_RN01_04_carne_minusc) ... ok
+test_CP_RN02_04_fecha_sin_ceros (regresion.test_f6_defectos.TestDefectosFase6.test_CP_RN02_04_fecha_sin_ceros) ... ok
+test_CP_RN04_02_hora_sin_cero (regresion.test_f6_defectos.TestDefectosFase6.test_CP_RN04_02_hora_sin_cero) ... ok
+test_CP_RN09_04_misma_fecha_otro_formato (regresion.test_f6_defectos.TestDefectosFase6.test_CP_RN09_04_misma_fecha_otro_formato) ... ok
+test_CP_RN11_04_reserva_hoy_finalizada (regresion.test_f6_defectos.TestDefectosFase6.test_CP_RN11_04_reserva_hoy_finalizada) ... ok
+test_RNF06_auditoria_sin_cambios_por_rechazo (regresion.test_f6_defectos.TestDefectosFase6.test_RNF06_auditoria_sin_cambios_por_rechazo) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.320s
+
+OK
