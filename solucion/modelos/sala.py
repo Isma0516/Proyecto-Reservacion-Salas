@@ -1,8 +1,8 @@
-"""Modelo de datos para una sala de estudio (relacionado con RF-04, RF-12)."""
+"""Entidad sala de estudio."""
 from dataclasses import dataclass
 
 ESTADO_DISPONIBLE = "disponible"
-ESTADO_FUERA_SERVICIO = "fuera_servicio"
+ESTADO_FUERA_SERVICIO = "fuera_de_servicio"
 
 
 @dataclass
@@ -11,4 +11,3 @@ class Sala:
     nombre: str
     capacidad: int
     estado: str = ESTADO_DISPONIBLE
-
