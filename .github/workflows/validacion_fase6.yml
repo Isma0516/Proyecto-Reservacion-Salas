@@ -1,0 +1,51 @@
+name: Validacion automatica - Fase 6
+
+on:
+  push:
+    branches:
+      - 'fix/**'
+      - develop
+  pull_request:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  pruebas:
+    name: Pruebas unitarias, integracion y regresion
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Obtener codigo
+        uses: actions/checkout@v4
+
+      - name: Instalar Tkinter y pantalla virtual
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-tk xvfb xauth
+          python3 -c "import tkinter, sqlite3, unittest"
+
+      - name: Verificar archivos y sintaxis
+        run: |
+          test -f solucion/main.py
+          test -f solucion/ui/aplicacion.py
+          test -f pruebas/regresion/test_f6_defectos.py
+          python3 -m compileall -q solucion pruebas
+
+      - name: Ejecutar pruebas existentes
+        shell: bash
+        run: |
+          set -o pipefail
+          xvfb-run -a python3 -m unittest discover -s pruebas -p 'test_*.py' -v 2>&1 | tee resultados_ci.txt
+          if grep -Eq 'skipped=[1-9]|failures=[1-9]|errors=[1-9]' resultados_ci.txt; then
+            exit 1
+          fi
+
+      - name: Guardar resultados de pruebas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencia-pruebas-fase6
+          path: resultados_ci.txt
+          if-no-files-found: warn
