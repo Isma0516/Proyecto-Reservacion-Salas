@@ -15,16 +15,49 @@ def obtener_sala(codigo):
 def listar_salas():
     with abrir_conexion() as con:
         return [_crear(f) for f in con.execute("SELECT * FROM salas ORDER BY codigo")]
-
+        
+def _normalizar_estado(estado):
+    """Convierte el estado anterior al formato oficial."""
+    if estado == "fuera_servicio":
+        return "fuera_de_servicio"
+    return estado
 
 def insertar_sala(sala):
+    """Inserta una sala normalizando su estado."""
+    estado = _normalizar_estado(sala.estado)
+
     with abrir_conexion() as con:
-        con.execute("INSERT INTO salas(codigo,nombre,capacidad,estado) VALUES(?,?,?,?)",(sala.codigo,sala.nombre,sala.capacidad,sala.estado))
+        con.execute(
+            """
+            INSERT INTO salas(codigo, nombre, capacidad, estado)
+            VALUES (?, ?, ?, ?)
+            """,
+            (sala.codigo, sala.nombre, sala.capacidad, estado),
+        )
 
 
-def actualizar_sala(codigo,nombre,capacidad,estado):
+def actualizar_sala(codigo, nombre=None, capacidad=None, estado=None):
+    """Actualiza una sala sin modificar su código.
+
+    Admite un objeto Sala o cuatro parámetros individuales.
+    """
+    if isinstance(codigo, Sala):
+        sala = codigo
+        codigo = sala.codigo
+        nombre = sala.nombre
+        capacidad = sala.capacidad
+        estado = sala.estado
+    estado = _normalizar_estado(estado)
     with abrir_conexion() as con:
-        con.execute("UPDATE salas SET nombre=?,capacidad=?,estado=? WHERE codigo=?",(nombre,capacidad,estado,codigo))
+        con.execute(
+            """
+            UPDATE salas
+            SET nombre = ?, capacidad = ?, estado = ?
+            WHERE codigo = ?
+            """,
+            (nombre, capacidad, estado, codigo),
+        )
+
 
 
 def maximo_personas_futuras(codigo, fecha_desde, hora_actual):
