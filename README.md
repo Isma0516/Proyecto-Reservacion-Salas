@@ -44,13 +44,3 @@ Las tablas son `estudiantes`, `salas`, `reservaciones` y `auditoria`. Para comen
 
 La columna `activo INTEGER` de Fase 2 se mantiene como `0/1` con mapeo `inactivo/activo` en UI y negocio. El valor de sala `fuera_servicio` se migra a `fuera_de_servicio`. Los triggers de auditoría registran sólo operaciones de base confirmadas y no registran validaciones rechazadas.
 
-## Git: convención de Fase 1
-
-- Rama de integración `develop`, rama estable `main`.
-- Defectos: `fix/BUG-RN-02-formato-fecha`, commit `fix(BUG-RN-02): exigir fecha AAAA-MM-DD`.
-- Funcionalidades: `feature/RF-16-reportes-csv`, commit `feat(RF-16): generar y exportar reportes CSV`.
-- Pruebas: `test/CP-RN02-04-formato-fecha`, commit `test(CP-RN02-04): verificar rechazo de fecha sin ceros`.
-- Documentación: `docs(F6): actualizar registro y matriz de trazabilidad`.
-- Revisar, ejecutar pruebas, crear commits descriptivos y subir la rama; integrar a `develop` mediante PR.
-
-Los commits y pushes **no se han ejecutado remotamente desde esta entrega**; la ruta `documentacion/fase_6/` contiene la propuesta de registro que debe actualizarse con los hashes reales de Git.
