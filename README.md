@@ -42,5 +42,5 @@ Las pruebas crean bases SQLite temporales independientes; no afectan datos reale
 
 Las tablas son `estudiantes`, `salas`, `reservaciones` y `auditoria`. Para comenzar **desde cero**, cerrar la aplicación, copiar o respaldar el archivo `solucion/reservaciones.db` y luego eliminarlo; al iniciar se regeneran las tablas y datos semilla. **No elimine la BD si requiere conservar reservaciones reales.**
 
-La columna `activo INTEGER` de Fase 2 se mantiene como `0/1` con mapeo `inactivo/activo` en UI y negocio. El valor de sala `fuera_servicio` se migra a `fuera_de_servicio`. Los triggers de auditoría registran sólo operaciones de base confirmadas y no registran validaciones rechazadas.
+La columna `activo INTEGER` de Fase 2 se mantiene como `0/1` con mapeo `inactivo/activo` en UI y negocio. El valor de sala `fuera_servicio` se migra a `fuera_de_servicio`. Los triggers de auditoría registran sólo operaciones de base confirmadas y no registran validaciones rechazadas. 
 
