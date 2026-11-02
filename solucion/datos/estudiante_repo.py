@@ -1,63 +1,27 @@
-"""Acceso a datos para estudiantes (soporta RF-02, RF-03 y RF-11)."""
-from typing import List, Optional
-
+"""Acceso a datos de estudiantes."""
 from solucion.datos.conexion import abrir_conexion
 from solucion.modelos.estudiante import Estudiante
 
 
-def existe_carne(carne: str) -> bool:
-    """RF-02: el carné es único sin distinguir mayúsculas de minúsculas."""
-    with abrir_conexion() as conexion:
-        fila = conexion.execute(
-            "SELECT 1 FROM estudiantes WHERE carne = ? COLLATE NOCASE", (carne,)
-        ).fetchone()
-        return fila is not None
+def _crear(f):
+    return Estudiante(f["carne"], f["nombre"], f["correo"], bool(f["activo"])) if f else None
 
 
-def insertar_estudiante(estudiante: Estudiante) -> None:
-    with abrir_conexion() as conexion:
-        with conexion:
-            conexion.execute(
-                "INSERT INTO estudiantes (carne, nombre, correo, activo) VALUES (?, ?, ?, ?)",
-                (estudiante.carne, estudiante.nombre, estudiante.correo, int(estudiante.activo)),
-            )
+def obtener_estudiante(carne):
+    with abrir_conexion() as con:
+        return _crear(con.execute("SELECT * FROM estudiantes WHERE carne=? COLLATE NOCASE", (carne.strip(),)).fetchone())
 
 
-def actualizar_estudiante(estudiante: Estudiante) -> None:
-    """RF-11: actualiza nombre, correo y estado. El carné nunca se modifica."""
-    with abrir_conexion() as conexion:
-        with conexion:
-            conexion.execute(
-                "UPDATE estudiantes SET nombre = ?, correo = ?, activo = ? WHERE carne = ?",
-                (estudiante.nombre, estudiante.correo, int(estudiante.activo), estudiante.carne),
-            )
+def listar_estudiantes():
+    with abrir_conexion() as con:
+        return [_crear(f) for f in con.execute("SELECT * FROM estudiantes ORDER BY nombre COLLATE NOCASE")]
 
 
-def obtener_estudiante(carne: str) -> Optional[Estudiante]:
-    with abrir_conexion() as conexion:
-        fila = conexion.execute(
-            "SELECT * FROM estudiantes WHERE carne = ?", (carne,)
-        ).fetchone()
-        if fila is None:
-            return None
-        return _fila_a_estudiante(fila)
+def insertar_estudiante(estudiante):
+    with abrir_conexion() as con:
+        con.execute("INSERT INTO estudiantes(carne,nombre,correo,activo) VALUES(?,?,?,?)", (estudiante.carne, estudiante.nombre, estudiante.correo, int(estudiante.activo)))
 
 
-def listar_estudiantes() -> List[Estudiante]:
-    """RF-03: activos e inactivos, ordenados alfabéticamente por nombre."""
-    with abrir_conexion() as conexion:
-        filas = conexion.execute(
-            "SELECT * FROM estudiantes ORDER BY nombre COLLATE NOCASE ASC"
-        ).fetchall()
-        return [_fila_a_estudiante(fila) for fila in filas]
-
-
-def _fila_a_estudiante(fila) -> Estudiante:
-    return Estudiante(
-        carne=fila["carne"],
-        nombre=fila["nombre"],
-        correo=fila["correo"],
-        activo=bool(fila["activo"]),
-    )
-
-
+def actualizar_estudiante(carne, nombre, correo, activo):
+    with abrir_conexion() as con:
+        con.execute("UPDATE estudiantes SET nombre=?,correo=?,activo=? WHERE carne=? COLLATE NOCASE", (nombre,correo,int(activo),carne))
