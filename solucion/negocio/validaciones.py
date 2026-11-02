@@ -72,10 +72,20 @@ def inicia_dentro_del_horario(hora):
     return inicio is not None and inicio >= time(8, 0)
 
 
-def finaliza_dentro_del_horario(hora, duracion):
-    final = calcular_hora_fin(hora, duracion)
-    return final is not None and final <= time(20, 0)
 
+def finaliza_dentro_del_horario(hora, duracion):
+    """Verifica que la reserva finalice como máximo a las 20:00."""
+    inicio = convertir_hora(hora)
+
+    if inicio is None or not duracion_valida(duracion):
+        return False
+
+    fecha_actual = date.today()
+    fecha_hora_inicio = datetime.combine(fecha_actual, inicio)
+    fecha_hora_fin = fecha_hora_inicio + timedelta(hours=duracion)
+    fecha_hora_limite = datetime.combine(fecha_actual, time(20, 0))
+
+    return fecha_hora_fin <= fecha_hora_limite
 
 def validar_horario_reserva(fecha_str, hora_str, duracion, cantidad, ahora=None):
     """Valida entrada común antes de consultar o modificar la BD.
