@@ -1,2 +1,2 @@
-# Este proyecto utiliza únicamente la biblioteca estándar de Python.
-# No hay dependencias externas que instalar para la versión integrada actual.
+# Tkinter, SQLite y unittest pertenecen a la biblioteca estándar de Python.
+# No se requieren dependencias externas para Python >= 3.10.
