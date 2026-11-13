@@ -6,6 +6,8 @@ from solucion.modelos.resultado import Resultado
 from solucion.modelos.sala import Sala, ESTADO_DISPONIBLE, ESTADO_FUERA_SERVICIO
 from solucion.negocio import validaciones as v
 
+# SQLite INTEGER admite como máximo un entero con signo de 64 bits.
+MAX_CAPACIDAD_SQLITE = (1 << 63) - 1
 
 def consultar_salas():
     try:
@@ -15,10 +17,15 @@ def consultar_salas():
         return Resultado(False,"No fue posible consultar salas.")
 
 
-def _validar(nombre,capacidad,estado):
-    if not v.texto_no_vacio(nombre): return "El nombre de la sala es obligatorio."
-    if type(capacidad) is not int or capacidad <= 0: return "La capacidad debe ser un entero mayor que cero."
-    if estado not in (ESTADO_DISPONIBLE,ESTADO_FUERA_SERVICIO): return "El estado de sala es inválido."
+def _validar(nombre, capacidad, estado):
+    if not v.texto_no_vacio(nombre):
+        return "El nombre de la sala es obligatorio."
+    if type(capacidad) is not int or capacidad <= 0:
+        return "La capacidad debe ser un entero mayor que cero."
+    if capacidad > MAX_CAPACIDAD_SQLITE:
+        return "La capacidad supera el máximo permitido para la base de datos."
+    if estado not in (ESTADO_DISPONIBLE, ESTADO_FUERA_SERVICIO):
+        return "El estado de sala es inválido."
     return None
 
 
